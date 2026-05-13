@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-cyber-50: #ecfeff;
+  --color-cyber-100: #cffafe;
+  --color-cyber-200: #a5f3fc;
+  --color-cyber-300: #67e8f9;
+  --color-cyber-400: #22d3ee;
+  --color-cyber-500: #00f5ff;
+  --color-cyber-600: #00d4e0;
+  --color-cyber-700: #0097a7;
+  --color-cyber-800: #006978;
+  --color-cyber-900: #004d5a;
+
+  --color-neon-50: #faf5ff;
+  --color-neon-100: #f3e8ff;
+  --color-neon-200: #e9d5ff;
+  --color-neon-300: #d8b4fe;
+  --color-neon-400: #c084fc;
+  --color-neon-500: #a855f7;
+  --color-neon-600: #9333ea;
+  --color-neon-700: #7c3aed;
+  --color-neon-800: #6d28d9;
+  --color-neon-900: #4c1d95;
+
+  --color-dark-50: #f8fafc;
+  --color-dark-100: #e2e8f0;
+  --color-dark-200: #94a3b8;
+  --color-dark-300: #64748b;
+  --color-dark-400: #475569;
+  --color-dark-500: #1e293b;
+  --color-dark-600: #0f172a;
+  --color-dark-700: #0a0f1a;
+  --color-dark-800: #070a12;
+  --color-dark-900: #050508;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 245, 255, 0.3) transparent;
+}
+
+*::-webkit-scrollbar { width: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 255, 0.3);
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(0, 245, 255, 0.25);
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 245, 255, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(0, 245, 255, 0.3); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.08; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-gradient { animation: gradient-shift 8s ease infinite; background-size: 200% 200%; }
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5), 0 0 30px rgba(0, 245, 255, 0.2);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.15), inset 0 0 15px rgba(0, 245, 255, 0.05);
+}
+
+.glass {
+  background: rgba(10, 15, 26, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-pulse 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 245, 255, 0) 0%,
+    rgba(0, 245, 255, 0.15) 50%,
+    rgba(0, 245, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes border-trace {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.border-trace {
+  background: linear-gradient(90deg, transparent, rgba(0,245,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: border-trace 3s linear infinite;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
