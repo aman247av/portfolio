@@ -113,16 +113,16 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: 0.15 + i * 0.12 }}
                 className="group relative p-6 md:p-8 rounded-2xl border border-dark-500/50 bg-dark-800/30 hover:border-cyber-500/25 transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,245,255,0.06)]"
               >
-                {/* Featured badge */}
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider bg-cyber-500/10 text-cyber-400 border border-cyber-500/20">
-                  FEATURED
-                </div>
-
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                   <div className="flex-1">
-                    <p className="font-mono text-cyber-400 text-xs mb-2">
-                      {project.subtitle}
-                    </p>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="font-mono text-cyber-400 text-xs">
+                        {project.subtitle}
+                      </p>
+                      <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider bg-cyber-500/10 text-cyber-400 border border-cyber-500/20 shrink-0 ml-3">
+                        FEATURED
+                      </span>
+                    </div>
                     <h3 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-cyber-300 transition-colors">
                       {project.title}
                     </h3>

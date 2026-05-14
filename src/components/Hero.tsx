@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-0"
+      className="relative min-h-screen flex items-center justify-center overflow-x-hidden pt-24 pb-12 md:pt-28 md:pb-8"
     >
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -23,7 +23,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-500/20 bg-cyber-500/5 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-500/20 bg-cyber-500/5 mb-4 md:mb-6"
         >
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -64,7 +64,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-lg sm:text-xl md:text-2xl font-mono text-dark-200 mb-8 h-8"
+          className="text-lg sm:text-xl md:text-2xl font-mono text-dark-200 mb-5 md:mb-8 h-8"
         >
           <span className="text-cyber-500 mr-2">{'>'}</span>
           <TypeAnimation
@@ -90,7 +90,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="max-w-2xl mx-auto mb-10"
+          className="max-w-2xl mx-auto mb-6 md:mb-10"
         >
           <p className="text-dark-200 text-base md:text-lg leading-relaxed mb-4">
             Building production-grade{' '}
@@ -115,7 +115,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-12"
+          className="flex flex-wrap items-center justify-center gap-4 mb-6 md:mb-8"
         >
           <a
             href="#projects"
@@ -156,29 +156,29 @@ export default function Hero() {
             </a>
           ))}
         </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="mt-6 md:mt-8"
+        >
+          <motion.a
+            href="#about"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 text-dark-400 hover:text-cyber-400 transition-colors"
+          >
+            <span className="text-xs font-mono">scroll</span>
+            <HiArrowDown className="w-4 h-4" />
+          </motion.a>
+        </motion.div>
       </div>
 
       {/* Floating code snippet decorations */}
       <CodeSnippet variant="api" className="absolute top-32 right-8 xl:right-24 animate-float opacity-60 hidden lg:block" />
       <CodeSnippet variant="stream" className="absolute top-74 left-8 xl:left-24 animate-float opacity-60 hidden lg:block" style={{ animationDelay: '3s' }} />
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.a
-          href="#about"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-dark-400 hover:text-cyber-400 transition-colors"
-        >
-          <span className="text-xs font-mono">scroll</span>
-          <HiArrowDown className="w-4 h-4" />
-        </motion.a>
-      </motion.div>
     </section>
   );
 }
