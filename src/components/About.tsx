@@ -14,7 +14,6 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-28 md:py-36">
-      <div className="absolute inset-0 grid-bg pointer-events-none opacity-50" />
 
       <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Section header */}

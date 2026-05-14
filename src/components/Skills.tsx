@@ -81,7 +81,6 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative py-28 md:py-36">
-      <div className="absolute inset-0 grid-bg pointer-events-none opacity-30" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyber-500/5 rounded-full blur-[150px]" />
       </div>

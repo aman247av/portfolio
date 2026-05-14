@@ -6,6 +6,7 @@ export default function SectionDivider() {
 
   return (
     <div ref={ref} className="max-w-6xl mx-auto px-6 overflow-hidden">
+      {/* Horizontal line */}
       <motion.div
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}

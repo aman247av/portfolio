@@ -8,25 +8,13 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-0"
     >
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-cyber-500/10 rounded-full blur-[120px] animate-float" />
         <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-neon-600/10 rounded-full blur-[120px] animate-float" style={{ animationDelay: '3s' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyber-700/5 rounded-full blur-[100px]" />
-      </div>
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid-bg pointer-events-none" />
-
-      {/* Scan line effect */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{ y: ['0%', '100%'] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          className="w-full h-px bg-gradient-to-r from-transparent via-cyber-500/20 to-transparent"
-        />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -171,8 +159,8 @@ export default function Hero() {
       </div>
 
       {/* Floating code snippet decorations */}
-      <CodeSnippet variant="api" className="absolute top-32 right-8 xl:right-24 animate-float opacity-60" />
-      <CodeSnippet variant="stream" className="absolute top-74 left-8 xl:left-24 animate-float opacity-60" style={{ animationDelay: '3s' }} />
+      <CodeSnippet variant="api" className="absolute top-32 right-8 xl:right-24 animate-float opacity-60 hidden lg:block" />
+      <CodeSnippet variant="stream" className="absolute top-74 left-8 xl:left-24 animate-float opacity-60 hidden lg:block" style={{ animationDelay: '3s' }} />
 
       {/* Scroll indicator */}
       <motion.div

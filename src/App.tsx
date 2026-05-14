@@ -20,11 +20,8 @@ function App() {
       {/* Animated particle background */}
       <ParticleField />
 
-      {/* Persistent background elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-cyber-500/5 to-transparent" />
-        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-neon-500/5 to-transparent" />
-      </div>
+      {/* Unified grid background */}
+      <div className="fixed inset-0 grid-bg pointer-events-none opacity-30 z-0" />
 
       <Navbar />
 

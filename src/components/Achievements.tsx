@@ -52,7 +52,6 @@ export default function Achievements() {
 
   return (
     <section id="achievements" className="relative py-28 md:py-36">
-      <div className="absolute inset-0 grid-bg pointer-events-none opacity-30" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-600/5 rounded-full blur-[130px]" />
       </div>
