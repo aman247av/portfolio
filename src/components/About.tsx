@@ -62,6 +62,15 @@ export default function About() {
               full-stack feature enhancements in Django + React at Avant Enterprises.
             </p>
             <p className="text-dark-200 leading-relaxed text-base md:text-lg">
+              On the side, I co-build{' '}
+              <span className="text-cyber-400 font-medium">Nxa</span>, a small
+              product studio where we shipped{' '}
+              <span className="text-white font-medium">NxaCare</span> (healthcare SaaS) and{' '}
+              <span className="text-white font-medium">Knowledgify</span> (10K+ installs on
+              Play Store). We also take on select client projects, from e-commerce
+              platforms to internal tools.
+            </p>
+            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
               I care about writing clean, scalable backend code, designing systems that
               can handle real-world load, and building APIs that developers love to
               consume. I've solved 350+ DSA problems and qualified for the Amazon ML
@@ -75,7 +84,7 @@ export default function About() {
                 { value: '1+', label: 'Years Exp.' },
                 { value: '20%', label: 'Throughput Boost' },
                 { value: '350+', label: 'DSA Problems' },
-                { value: '10K+', label: 'App Installs' },
+                { value: '3+', label: 'Nxa Products Shipped so far' },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}

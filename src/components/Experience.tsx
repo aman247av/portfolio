@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const experiences = [
   {
@@ -33,6 +34,8 @@ const experiences = [
     role: 'Freelance Developer',
     company: 'Avant Enterprises',
     client: null,
+    org: 'Nxa',
+    link: 'https://avant.reminiscent.in/#/login',
     period: 'Aug 2024 - Sept 2024',
     location: 'Remote',
     projects: null,
@@ -114,11 +117,21 @@ export default function Experience() {
                 <div className="p-6 md:p-8 rounded-2xl border border-dark-500/50 bg-dark-800/30 hover:border-cyber-500/20 hover:bg-dark-800/50 transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,245,255,0.05)]">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
                     <div>
-                      <h3 className="text-xl font-display font-bold text-white">
+                      <h3 className="text-xl font-display font-bold text-white flex items-center gap-2">
                         {exp.role}
+                        {exp.org && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider bg-neon-500/10 text-neon-400 border border-neon-500/20">
+                            {exp.org}
+                          </span>
+                        )}
                       </h3>
                       <p className={`font-semibold ${exp.accent === 'cyber' ? 'text-cyber-400' : 'text-neon-400'}`}>
                         {exp.company}
+                        {exp.link && (
+                          <a href={exp.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center ml-2 text-dark-400 hover:text-cyber-400 transition-colors">
+                            <FaExternalLinkAlt className="w-3 h-3" />
+                          </a>
+                        )}
                         {exp.client && (
                           <span className="text-dark-300 font-normal text-sm ml-2">
                             ({exp.client})

@@ -54,10 +54,15 @@ export default function Contact() {
               Connect
             </span>
           </h2>
-          <p className="text-dark-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-4">
+          <p className="text-dark-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-2">
             I'm always open to discussing new opportunities, interesting projects, or
             anything tech. Whether you're a recruiter, hiring manager, or fellow developer
             — feel free to reach out!
+          </p>
+          <p className="text-dark-300 text-sm max-w-2xl mx-auto leading-relaxed mb-4">
+            Building a product or need a reliable dev team?{' '}
+            <span className="text-neon-400">Nxa</span> takes on select client projects
+            — let's talk.
           </p>
           <div className="flex items-center justify-center gap-2 text-dark-300 text-sm mb-12">
             <HiLocationMarker className="w-4 h-4 text-cyber-400" />

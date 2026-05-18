@@ -69,14 +69,12 @@ export default function Hero() {
           <span className="text-cyber-500 mr-2">{'>'}</span>
           <TypeAnimation
             sequence={[
-              'Software Developer Engineer',
-              2500,
-              'Backend · APIs · Microservices',
-              2500,
-              'Distributed Systems · Streaming at Scale',
-              2500,
               'SDE I @ MAQ Software × LinkedIn',
-              2000,
+              2500,
+              'Backend · APIs & Microservices · Distributed Systems',
+              2500,
+              'Co-building Nxa — Products & Solutions',
+              2500,
             ]}
             wrapper="span"
             speed={40}

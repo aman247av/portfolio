@@ -7,6 +7,7 @@ const projects = [
   {
     title: 'NxaCare',
     subtitle: 'Multi-Tenant SaaS Clinic Management Platform',
+    org: 'Nxa',
     description:
       'Full-stack healthcare SaaS digitizing end-to-end clinic operations — appointments, treatment plans, billing, prescriptions, and real-time chat. Features atomic slot-lock booking for zero double-bookings, dual payment gateways (Razorpay/Stripe) with circuit breakers, Socket.IO chat with SLA tracking, BullMQ workers for async tasks, and multi-tenant data isolation across 19+ models. Serves separate admin panel and patient app.',
     tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Redis', 'Socket.IO', 'Razorpay', 'GCP Cloud Run'],
@@ -29,6 +30,7 @@ const projects = [
   {
     title: 'Knowledgify',
     subtitle: 'Published Android App — 10K+ Installs',
+    org: 'Nxa',
     description:
       'Educational Android app for diploma students with 10,000+ installs and 4.1-star rating on Google Play Store. Built with Java, Android SDK, and Firebase for real-time community engagement, cloud storage, and peer learning.',
     tech: ['Java', 'Android SDK', 'Firebase', 'Cloud Storage'],
@@ -119,9 +121,16 @@ export default function Projects() {
                       <p className="font-mono text-cyber-400 text-xs">
                         {project.subtitle}
                       </p>
-                      <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider bg-cyber-500/10 text-cyber-400 border border-cyber-500/20 shrink-0 ml-3">
-                        FEATURED
-                      </span>
+                      <div className="flex items-center gap-2 shrink-0 ml-3">
+                        {project.org && (
+                          <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider bg-neon-500/10 text-neon-400 border border-neon-500/20">
+                            {project.org}
+                          </span>
+                        )}
+                        <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider bg-cyber-500/10 text-cyber-400 border border-cyber-500/20">
+                          FEATURED
+                        </span>
+                      </div>
                     </div>
                     <h3 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-cyber-300 transition-colors">
                       {project.title}
