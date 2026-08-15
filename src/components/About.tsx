@@ -1,153 +1,92 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { HiCode, HiServer, HiDatabase, HiChip } from 'react-icons/hi';
-
-const highlights = [
-  { icon: HiCode, label: 'Backend & APIs', desc: 'TypeScript, NestJS, Node.js, Java, Spring, REST & gRPC' },
-  { icon: HiChip, label: 'Distributed & Stream Processing', desc: 'Kafka, Flink, RabbitMQ, Protobuf/Avro, Real-Time Pipelines' },
-  { icon: HiDatabase, label: 'Databases & Caching', desc: 'PostgreSQL, Redis, MongoDB, MySQL' },
-  { icon: HiServer, label: 'Cloud, DevOps & AI', desc: 'GCP, AWS, Docker, Kubernetes, GitHub Actions, Claude Code + MCP' },
-];
+import { about, education, recognition, stack } from '../content/about';
+import Icon from './primitives/Icon';
+import Panel, { Readout } from './primitives/Panel';
+import Reveal from './primitives/Reveal';
+import Section from './primitives/Section';
 
 export default function About() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-
   return (
-    <section id="about" className="relative py-28 md:py-36">
+    <Section id="about" index="03" label="About" meta="background & stack">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-7">
+          {about.map((paragraph, i) => (
+            <Reveal key={i} delay={i * 50}>
+              <p
+                className={`t-body max-w-[62ch] ${
+                  i === 0 ? 'text-[1.0625rem] text-hi' : 'mt-5'
+                }`}
+              >
+                {paragraph}
+              </p>
+            </Reveal>
+          ))}
 
-      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <span className="font-mono text-cyber-500 text-sm tracking-wider">
-            {'// 01. '}ABOUT ME
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mt-3">
-            Building backend systems that{' '}
-            <span className="bg-gradient-to-r from-cyber-400 to-neon-400 bg-clip-text text-transparent">
-              scale reliably
-            </span>
-          </h2>
-        </motion.div>
+          <Reveal delay={220}>
+            <div className="mt-8 grid items-start gap-5 sm:grid-cols-2">
+              <Panel title="Education">
+                <div className="p-4">
+                  <p className="t-mono text-hi">{education.degree}</p>
+                  <p className="t-body mt-2 text-[0.8125rem]">{education.institution}</p>
+                </div>
+                <div className="row-divide border-t border-edge">
+                  <Readout k="location" v={education.location} />
+                  <Readout k="period" v={education.period} />
+                  <Readout k="cgpa" v={education.detail.replace('CGPA ', '')} accent />
+                </div>
+              </Panel>
 
-        <div className="grid md:grid-cols-5 gap-12 items-start">
-          {/* Text content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 space-y-5"
-          >
-            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              I'm a Software Engineer at{' '}
-              <span className="text-cyber-400 font-medium">NAVIOM</span>, where I own the
-              platform layer of a greenfield cross-border logistics product — four
-              versioned internal packages (Workflow Engine, Rules Engine, Integration
-              Adapter Framework, Vault) consumed by{' '}
-              <span className="text-white font-medium">6 services</span>, with a rules
-              path running at <span className="text-white font-medium">p95 &lt; 150ms</span>.
-            </p>
-            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              Before that I worked on LinkedIn's data infrastructure (via{' '}
-              <span className="text-neon-400 font-medium">MAQ Software</span>), migrating a
-              high-volume financial stream-processing pipeline from Samza to Apache Flink —{' '}
-              <span className="text-white font-medium">+20% throughput</span>,{' '}
-              <span className="text-white font-medium">-45% Kafka I/O memory</span>, and
-              tooling that cut migration effort{' '}
-              <span className="text-white font-medium">70%</span>. I also built DAG-based
-              model-lineage discovery across{' '}
-              <span className="text-white font-medium">850+ models</span>.
-            </p>
-            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              I graduated with a B.Tech in Computer Science from{' '}
-              <span className="text-neon-400 font-medium">IIIT Guwahati</span> (CGPA 8.59).
-              Earlier, I built microservices and REST APIs at Scholify using Django, Redis,
-              PostgreSQL, and AWS, and delivered full-stack features in Django + React at
-              Avant Enterprises.
-            </p>
-            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              On the side, I co-build{' '}
-              <span className="text-cyber-400 font-medium">Nxa</span>, a small
-              product studio where we shipped{' '}
-              <span className="text-white font-medium">NxaCare</span> (healthcare SaaS) and{' '}
-              <span className="text-white font-medium">Knowledgify</span> (10K+ installs on
-              Play Store). We also take on select client projects, from e-commerce
-              platforms to internal tools.
-            </p>
-            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              I care about writing clean, scalable backend code, designing systems that
-              can handle real-world load, and building APIs that developers love to
-              consume. I lean hard on AI-assisted delivery — Claude Code, custom skills,
-              and MCP-backed spec-to-test scaffolding cut our spec-to-merge time{' '}
-              <span className="text-white font-medium">40%</span>. I've solved 650+ DSA
-              problems and qualified for the Amazon ML Summer School 2024. Outside of
-              code, you'll find me exploring places across India or hunting for indie
-              music.
-            </p>
+              <Panel title="Recognition">
+                <ul className="row-divide">
+                  {recognition.map((item) => (
+                    <li key={item.title}>
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-start gap-3 p-4 transition-colors hover:bg-panel-2"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="t-mono text-hi transition-colors group-hover:text-amber">
+                            {item.title}
+                          </p>
+                          <p className="t-body mt-1 text-[0.8125rem]">{item.detail}</p>
+                        </div>
+                        <Icon
+                          name="arrow"
+                          className="mt-1 h-3.5 w-3.5 shrink-0 text-edge-hi transition-colors group-hover:text-amber"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            </div>
+          </Reveal>
+        </div>
 
-            {/* Quick stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-              {[
-                { value: '1.5+', label: 'Years Exp.' },
-                { value: '6', label: 'Services on my Platform' },
-                { value: '650+', label: 'DSA Problems' },
-                { value: '3+', label: 'Nxa Products Shipped so far' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                  className="text-center p-4 rounded-xl border border-dark-500/50 bg-dark-800/50"
-                >
-                  <div className="text-2xl font-display font-bold text-cyber-400">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs font-mono text-dark-300 mt-1">
-                    {stat.label}
-                  </div>
-                </motion.div>
+        {/* Stack matrix — grouped by what it is for, not a wall of logos. */}
+        <Reveal delay={120} className="lg:col-span-5">
+          <Panel title="Stack" meta="what I reach for">
+            <div className="row-divide">
+              {stack.map((group) => (
+                <div key={group.label} className="p-4">
+                  <p className="t-label">{group.label}</p>
+                  <ul className="mt-2.5 flex flex-wrap gap-1.5">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="border border-edge px-2 py-1 font-mono text-[0.6875rem] text-hi"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
-          </motion.div>
-
-          {/* Highlight cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="md:col-span-2 space-y-4"
-          >
-            {highlights.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                className="group p-5 rounded-xl border border-dark-500/50 bg-dark-800/30 hover:border-cyber-500/30 hover:bg-cyber-500/5 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-2.5 rounded-lg bg-cyber-500/10 text-cyber-400 group-hover:bg-cyber-500/20 transition-colors">
-                    <item.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold text-sm">
-                      {item.label}
-                    </h3>
-                    <p className="text-dark-300 text-xs mt-1 font-mono">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+          </Panel>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

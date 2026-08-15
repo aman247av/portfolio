@@ -1,49 +1,23 @@
-import CursorGlow from './components/CursorGlow';
-import ParticleField from './components/ParticleField';
-import SectionDivider from './components/SectionDivider';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
 import Experience from './components/Experience';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Achievements from './components/Achievements';
+import Work from './components/Work';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
+export default function App() {
   return (
-    <div className="relative min-h-screen bg-dark-900 overflow-x-hidden">
-      {/* Cursor glow effect */}
-      <CursorGlow />
-
-      {/* Animated particle background */}
-      <ParticleField />
-
-      {/* Unified grid background */}
-      <div className="fixed inset-0 grid-bg pointer-events-none opacity-30 z-0" />
-
-      <Navbar />
-
-      <main className="relative z-10">
+    <>
+      <Header />
+      <main id="main">
         <Hero />
-        <SectionDivider />
-        <About />
-        <SectionDivider />
         <Experience />
-        <SectionDivider />
-        <Skills />
-        <SectionDivider />
-        <Projects />
-        <SectionDivider />
-        <Achievements />
-        <SectionDivider />
+        <Work />
+        <About />
         <Contact />
       </main>
-
       <Footer />
-    </div>
+    </>
   );
 }
-
-export default App;
