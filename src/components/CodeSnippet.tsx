@@ -7,36 +7,43 @@ function ApiSnippet() {
         <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
         <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
         <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-        <span className="ml-2 text-dark-400 text-[10px]">UserService.java</span>
+        <span className="ml-2 text-dark-400 text-[10px]">workflow.controller.ts</span>
       </div>
       <div>
-        <span className="text-neon-400">@RestController</span>
+        <span className="text-neon-400">@Controller</span>
+        <span className="text-dark-400">(</span>
+        <span className="text-green-400">'cases'</span>
+        <span className="text-dark-400">)</span>
       </div>
       <div>
         <span className="text-neon-400">class</span>{' '}
-        <span className="text-cyber-300">UserService</span>{' '}
+        <span className="text-cyber-300">WorkflowController</span>{' '}
         <span className="text-dark-400">{'{'}</span>
       </div>
       <div className="pl-4">
-        <span className="text-neon-400">@GetMapping</span>
+        <span className="text-neon-400">@Post</span>
         <span className="text-dark-400">(</span>
-        <span className="text-green-400">"/api/users"</span>
+        <span className="text-green-400">':id/approve'</span>
         <span className="text-dark-400">)</span>
       </div>
       <div className="pl-4">
-        <span className="text-yellow-300">List</span>
-        <span className="text-dark-400">{'<'}</span>
-        <span className="text-yellow-300">User</span>
-        <span className="text-dark-400">{'>'}</span>{' '}
-        <span className="text-cyber-400">getAll</span>
-        <span className="text-dark-400">() {'{'}</span>
+        <span className="text-cyber-400">approve</span>
+        <span className="text-dark-400">(</span>
+        <span className="text-dark-200">id</span>
+        <span className="text-dark-400">:</span>{' '}
+        <span className="text-yellow-300">string</span>
+        <span className="text-dark-400">) {'{'}</span>
       </div>
       <div className="pl-8">
         <span className="text-neon-400">return</span>{' '}
-        <span className="text-dark-200">repo</span>
+        <span className="text-dark-200">this</span>
         <span className="text-dark-400">.</span>
-        <span className="text-cyber-400">findAll</span>
-        <span className="text-dark-400">();</span>
+        <span className="text-dark-200">engine</span>
+        <span className="text-dark-400">.</span>
+        <span className="text-cyber-400">transition</span>
+        <span className="text-dark-400">(</span>
+        <span className="text-dark-200">id</span>
+        <span className="text-dark-400">);</span>
       </div>
       <div className="pl-4">
         <span className="text-dark-400">{'}'}</span>

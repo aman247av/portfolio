@@ -66,7 +66,7 @@ export default function Contact() {
           </p>
           <div className="flex items-center justify-center gap-2 text-dark-300 text-sm mb-12">
             <HiLocationMarker className="w-4 h-4 text-cyber-400" />
-            <span>Noida, India</span>
+            <span>Gurugram, India</span>
           </div>
         </motion.div>
 

@@ -1,37 +1,40 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
-  SiPython, SiJavascript,
+  SiPython, SiJavascript, SiTypescript,
   SiCplusplus, SiApachekafka, SiApacheflink, SiSpringboot,
-  SiReact, SiNodedotjs, SiDjango, SiExpress,
-  SiMongodb, SiMysql, SiPostgresql, SiRedis,
-  SiDocker, SiKubernetes, SiLinux, SiGit,
-  SiTensorflow, SiPytorch, SiGooglecloud,
+  SiReact, SiNodedotjs, SiNestjs, SiNextdotjs, SiDjango, SiExpress,
+  SiMongodb, SiMysql, SiPostgresql, SiRedis, SiRabbitmq,
+  SiDocker, SiKubernetes, SiLinux, SiGit, SiGithubactions,
+  SiTensorflow, SiGooglecloud,
 } from 'react-icons/si';
 import { FaJava, FaAws, FaAndroid } from 'react-icons/fa';
-import { HiCube, HiServer } from 'react-icons/hi';
-import { TbApi, TbBrain } from 'react-icons/tb';
+import { HiCube, HiServer, HiSparkles } from 'react-icons/hi';
+import { TbApi, TbBrain, TbRobot, TbPlug } from 'react-icons/tb';
 import { VscSymbolInterface } from 'react-icons/vsc';
 
 const categories = [
   {
     title: 'Languages',
     skills: [
+      { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
       { name: 'Java', icon: FaJava, color: '#f89820' },
       { name: 'Python', icon: SiPython, color: '#3776AB' },
-      { name: 'C/C++', icon: SiCplusplus, color: '#00599C' },
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
       { name: 'SQL', icon: SiMysql, color: '#4479A1' },
+      { name: 'C/C++', icon: SiCplusplus, color: '#00599C' },
     ],
   },
   {
     title: 'Backend & APIs',
     skills: [
-      { name: 'Spring Boot', icon: SiSpringboot, color: '#6DB33F' },
+      { name: 'NestJS', icon: SiNestjs, color: '#E0234E' },
       { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-      { name: 'Django', icon: SiDjango, color: '#092E20' },
+      { name: 'Spring', icon: SiSpringboot, color: '#6DB33F' },
+      { name: 'Django', icon: SiDjango, color: '#44B78B' },
       { name: 'Express.js', icon: SiExpress, color: '#ffffff' },
       { name: 'REST APIs', icon: TbApi, color: '#00f5ff' },
+      { name: 'gRPC', icon: VscSymbolInterface, color: '#5AC0C2' },
       { name: 'Microservices', icon: HiServer, color: '#22d3ee' },
     ],
   },
@@ -39,38 +42,42 @@ const categories = [
     title: 'Databases & Caching',
     skills: [
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
-      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
-      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
       { name: 'Redis', icon: SiRedis, color: '#DC382D' },
+      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
     ],
   },
   {
-    title: 'Distributed Systems',
+    title: 'Streaming & Messaging',
     skills: [
       { name: 'Apache Kafka', icon: SiApachekafka, color: '#FFFFFF' },
-      { name: 'gRPC', icon: VscSymbolInterface, color: '#5AC0C2' },
       { name: 'Apache Flink', icon: SiApacheflink, color: '#E6526F' },
-      { name: 'Apache Beam', icon: HiCube, color: '#FF6F00' },
+      { name: 'RabbitMQ', icon: SiRabbitmq, color: '#FF6600' },
+      { name: 'Protobuf / Avro', icon: HiCube, color: '#FF6F00' },
     ],
   },
   {
     title: 'Cloud & DevOps',
     skills: [
+      { name: 'GCP', icon: SiGooglecloud, color: '#4285F4' },
       { name: 'AWS (EC2, RDS)', icon: FaAws, color: '#FF9900' },
       { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+      { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
+      { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
       { name: 'Linux', icon: SiLinux, color: '#FCC624' },
       { name: 'Git', icon: SiGit, color: '#F05032' },
-      { name: 'GCP', icon: SiGooglecloud, color: '#4285F4' },
-      { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
     ],
   },
   {
-    title: 'Frontend & ML',
+    title: 'AI, Agents & Frontend',
     skills: [
+      { name: 'Claude Code', icon: TbRobot, color: '#D97757' },
+      { name: 'MCP', icon: TbPlug, color: '#00f5ff' },
+      { name: 'RAG', icon: HiSparkles, color: '#a855f7' },
+      { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
       { name: 'React', icon: SiReact, color: '#61DAFB' },
-      { name: 'Android (Java)', icon: FaAndroid, color: '#3DDC84' },
       { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
-      { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+      { name: 'Android (Java)', icon: FaAndroid, color: '#3DDC84' },
       { name: 'CNNs', icon: TbBrain, color: '#9333EA' },
     ],
   },

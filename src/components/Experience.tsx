@@ -4,31 +4,56 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const experiences = [
   {
-    role: 'Software Developer Engineer I',
+    role: 'Software Engineer I',
+    company: 'NAVIOM',
+    client: null,
+    period: 'Jul 2026 — Present',
+    location: 'Gurugram, India',
+    projects: [
+      {
+        title: 'Platform Layer — Cross-Border Logistics',
+        points: [
+          'Own the platform layer of a greenfield cross-border logistics product, shipping four versioned internal packages — Workflow Engine, Rules Engine, Integration Adapter Framework, and Vault — consumed by 6 services.',
+          'Designed and built the Workflow Engine end-to-end: a case management system turning operational exceptions into owned, SLA-tracked tickets through auto-assignment, maker-checker approvals, and evidence-gated closure.',
+          'Built a unified partner Integration Adapter with retries, a cross-instance Redis sliding-window circuit breaker, and fail-closed routing; shipped a versioned Rules Engine at p95 < 150ms, backed by 75 unit and integration tests.',
+        ],
+      },
+      {
+        title: 'AI-Assisted Delivery Workflow',
+        points: [
+          'Rolled out an AI-assisted delivery workflow with Claude Code — repo-level context, custom skills, and MCP-backed spec-to-test scaffolding and PR review.',
+          'Cut spec-to-merge time by 40% while keeping human review and CI gates in the loop.',
+        ],
+      },
+    ],
+    tech: ['TypeScript', 'NestJS', 'Next.js', 'PostgreSQL', 'Redis', 'RabbitMQ', 'GCP', 'Docker'],
+    accent: 'cyber',
+  },
+  {
+    role: 'Software Engineer I',
     company: 'MAQ Software',
     client: 'Client: LinkedIn',
-    period: 'Jan 2025 — Present',
+    period: 'Jan 2025 — Jun 2026',
     location: 'Noida, India',
     projects: [
       {
         title: 'Samza → Flink Pipeline Migration',
         points: [
-          'Migrated LinkedIn\'s large-scale streaming pipelines from Beam-on-Samza to Beam-on-Flink, deploying them as containerized Flink applications on Kubernetes.',
-          'Built migration scripts for code changes and a CLI tool to capture Samza checkpoints and redeploy jobs on Flink from the latest checkpoint, validating Kafka lag, throughput, and recovery during restarts.',
-          'Achieved +20% throughput, -45% Kafka I/O memory, and -35% end-to-end latency post-migration.',
+          'Migrated LinkedIn\'s high-volume financial stream-processing pipeline from Samza to Apache Flink, deploying jobs as containerized Flink applications on Kubernetes.',
+          'Cut Kafka I/O memory 45% via object reuse and fewer intermediate allocations, and raised throughput 20% through parallel execution and operator chaining.',
+          'Built the tooling that scaled the migration across repos — automated code transformation, metric-gated progressive rollout, and checkpoint-aware rollback — cutting manual effort 70%.',
         ],
       },
       {
-        title: 'Automating Source Delay Ticket Management',
+        title: 'MegaRefresh — Model Lineage & Metadata',
         points: [
-          'Developed a Python service to monitor source-table delays from PostgreSQL and auto-raise tickets via the ticketing API, with buffer and cooldown logic to filter noise from frequently delayed tables.',
-          'Owned the full ticket lifecycle — dedup, status sync on delay changes, auto-closure on recovery, and added a log table for tracking and auditing.',
-          'Reduced 90%+ of manual on-call work across 100+ daily delay events.'
+          'Built DAG-based model-lineage discovery and metadata collection for LinkedIn\'s MegaRefresh initiative.',
+          'Enabled reproducibility, tiering, and policy-gated publishing across 850+ models.',
         ],
       },
     ],
-    tech: ['Java', 'Python', 'Apache Kafka', 'Apache Beam', 'Kubernetes', 'PostgreSQL', 'REST APIs', 'Linux', 'Git'],
-    accent: 'cyber',
+    tech: ['Java', 'Apache Flink', 'Apache Kafka', 'Python', 'Kubernetes', 'PostgreSQL', 'Linux', 'Git'],
+    accent: 'neon',
   },
   {
     role: 'Freelance Developer',
@@ -44,7 +69,7 @@ const experiences = [
       'Resolved critical system bugs and shipped new features directly with stakeholders, increasing platform stability.'
     ],
     tech: ['Django', 'React', 'JavaScript', 'REST APIs'],
-    accent: 'neon',
+    accent: 'cyber',
   },
   {
     role: 'Software Engineering Intern',
@@ -59,7 +84,7 @@ const experiences = [
       'Deployed releases and managed AWS infrastructure — EC2 instances with Auto-Scaling, load balancers, and RDS database migrations in production.'
     ],
     tech: ['Python', 'JavaScript', 'Redis', 'PostgreSQL', 'AWS EC2', 'RDS'],
-    accent: 'cyber',
+    accent: 'neon',
   },
 ];
 

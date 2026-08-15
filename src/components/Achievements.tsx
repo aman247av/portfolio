@@ -26,8 +26,8 @@ const achievements = [
   },
   {
     icon: HiAcademicCap,
-    title: '350+ DSA Problems',
-    description: 'Solved 350+ Data Structures & Algorithms problems on GeeksforGeeks, building strong competitive programming foundations.',
+    title: '650+ DSA Problems',
+    description: 'Solved 250+ problems on LeetCode and 400+ on GeeksforGeeks, building strong problem-solving and competitive programming foundations.',
     tag: 'Problem Solving',
     accent: 'neon',
   },
@@ -43,7 +43,7 @@ const achievements = [
 const education = {
   degree: 'B.Tech in Computer Science & Engineering',
   institution: 'Indian Institute of Information Technology, Guwahati',
-  period: '2021 — 2025',
+  period: 'Dec 2021 — May 2025',
   cgpa: '8.59 / 10',
 };
 

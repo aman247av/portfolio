@@ -69,9 +69,11 @@ export default function Hero() {
           <span className="text-cyber-500 mr-2">{'>'}</span>
           <TypeAnimation
             sequence={[
-              'SDE I @ MAQ Software × LinkedIn',
+              'Software Engineer I @ NAVIOM',
               2500,
               'Backend · APIs & Microservices · Distributed Systems',
+              2500,
+              'Ex-LinkedIn (via MAQ) — Kafka & Flink at scale',
               2500,
               'Co-building Nxa — Products & Solutions',
               2500,
@@ -91,18 +93,20 @@ export default function Hero() {
           className="max-w-2xl mx-auto mb-6 md:mb-10"
         >
           <p className="text-dark-200 text-base md:text-lg leading-relaxed mb-4">
-            Building production-grade{' '}
-            <span className="text-cyber-400 font-semibold">APIs</span> &{' '}
-            <span className="text-cyber-400 font-semibold">microservices</span> that
-            handle millions of requests, and{' '}
-            <span className="text-neon-400 font-semibold">distributed systems</span> that
-            process trillions of events — powering real-time pipelines behind{' '}
-            <span className="text-white font-semibold">LinkedIn's</span> infrastructure.
+            Building the{' '}
+            <span className="text-cyber-400 font-semibold">platform layer</span> of a
+            greenfield cross-border logistics product — workflow engines, rules engines,
+            and partner{' '}
+            <span className="text-cyber-400 font-semibold">integrations</span> at{' '}
+            <span className="text-white font-semibold">NAVIOM</span>. Previously built{' '}
+            <span className="text-neon-400 font-semibold">distributed stream-processing</span>{' '}
+            systems behind <span className="text-white font-semibold">LinkedIn's</span>{' '}
+            data infrastructure.
           </p>
           <div className="flex items-center justify-center gap-3 font-mono text-xs text-dark-400 flex-wrap">
-            <span className="px-2.5 py-1 rounded-md border border-dark-500/50 bg-dark-800/50">MAQ Software × LinkedIn XInfra</span>
+            <span className="px-2.5 py-1 rounded-md border border-dark-500/50 bg-dark-800/50">SDE I @ NAVIOM</span>
             <span className="text-dark-500">·</span>
-            <span className="px-2.5 py-1 rounded-md border border-dark-500/50 bg-dark-800/50">Java · Kafka · Python · Spring Boot</span>
+            <span className="px-2.5 py-1 rounded-md border border-dark-500/50 bg-dark-800/50">TypeScript · NestJS · Kafka · Flink</span>
             <span className="text-dark-500">·</span>
             <span className="px-2.5 py-1 rounded-md border border-dark-500/50 bg-dark-800/50">B.Tech CSE @ IIITG</span>
           </div>

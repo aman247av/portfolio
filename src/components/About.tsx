@@ -3,10 +3,10 @@ import { useInView } from 'react-intersection-observer';
 import { HiCode, HiServer, HiDatabase, HiChip } from 'react-icons/hi';
 
 const highlights = [
-  { icon: HiCode, label: 'Backend & APIs', desc: 'Java, Spring Boot, Django, Node.js, REST & Microservices' },
-  { icon: HiChip, label: 'Distributed & Stream Processing', desc: 'Kafka, gRPC, Beam, Flink, Real-Time Pipelines' },
-  { icon: HiDatabase, label: 'Databases & Caching', desc: 'PostgreSQL, MySQL, MongoDB, Redis' },
-  { icon: HiServer, label: 'Cloud & DevOps', desc: 'AWS (EC2, RDS), Cloud Run, Docker, Kubernetes, Linux, Git' },
+  { icon: HiCode, label: 'Backend & APIs', desc: 'TypeScript, NestJS, Node.js, Java, Spring, REST & gRPC' },
+  { icon: HiChip, label: 'Distributed & Stream Processing', desc: 'Kafka, Flink, RabbitMQ, Protobuf/Avro, Real-Time Pipelines' },
+  { icon: HiDatabase, label: 'Databases & Caching', desc: 'PostgreSQL, Redis, MongoDB, MySQL' },
+  { icon: HiServer, label: 'Cloud, DevOps & AI', desc: 'GCP, AWS, Docker, Kubernetes, GitHub Actions, Claude Code + MCP' },
 ];
 
 export default function About() {
@@ -43,23 +43,31 @@ export default function About() {
             className="md:col-span-3 space-y-5"
           >
             <p className="text-dark-200 leading-relaxed text-base md:text-lg">
-              I'm a Software Developer Engineer at{' '}
-              <span className="text-cyber-400 font-medium">MAQ Software</span>, where I
-              build backend services, APIs, and microservices for LinkedIn's data
-              infrastructure. My current work involves migrating streaming pipelines
-              from Samza to Apache Flink — delivering{' '}
+              I'm a Software Engineer at{' '}
+              <span className="text-cyber-400 font-medium">NAVIOM</span>, where I own the
+              platform layer of a greenfield cross-border logistics product — four
+              versioned internal packages (Workflow Engine, Rules Engine, Integration
+              Adapter Framework, Vault) consumed by{' '}
+              <span className="text-white font-medium">6 services</span>, with a rules
+              path running at <span className="text-white font-medium">p95 &lt; 150ms</span>.
+            </p>
+            <p className="text-dark-200 leading-relaxed text-base md:text-lg">
+              Before that I worked on LinkedIn's data infrastructure (via{' '}
+              <span className="text-neon-400 font-medium">MAQ Software</span>), migrating a
+              high-volume financial stream-processing pipeline from Samza to Apache Flink —{' '}
               <span className="text-white font-medium">+20% throughput</span>,{' '}
-              <span className="text-white font-medium">-45% Kafka I/O memory</span>, and{' '}
-              <span className="text-white font-medium">-35% end-to-end latency</span>.
+              <span className="text-white font-medium">-45% Kafka I/O memory</span>, and
+              tooling that cut migration effort{' '}
+              <span className="text-white font-medium">70%</span>. I also built DAG-based
+              model-lineage discovery across{' '}
+              <span className="text-white font-medium">850+ models</span>.
             </p>
             <p className="text-dark-200 leading-relaxed text-base md:text-lg">
               I graduated with a B.Tech in Computer Science from{' '}
-              <span className="text-neon-400 font-medium">
-                IIIT Guwahati
-              </span>{' '}
-              (CGPA 8.59). Previously, I built microservices and REST APIs at Scholify
-              using Django, Redis, PostgreSQL, and AWS (EC2, RDS), and delivered
-              full-stack feature enhancements in Django + React at Avant Enterprises.
+              <span className="text-neon-400 font-medium">IIIT Guwahati</span> (CGPA 8.59).
+              Earlier, I built microservices and REST APIs at Scholify using Django, Redis,
+              PostgreSQL, and AWS, and delivered full-stack features in Django + React at
+              Avant Enterprises.
             </p>
             <p className="text-dark-200 leading-relaxed text-base md:text-lg">
               On the side, I co-build{' '}
@@ -73,17 +81,20 @@ export default function About() {
             <p className="text-dark-200 leading-relaxed text-base md:text-lg">
               I care about writing clean, scalable backend code, designing systems that
               can handle real-world load, and building APIs that developers love to
-              consume. I've solved 350+ DSA problems and qualified for the Amazon ML
-              Summer School 2024. Outside of code, you'll find me exploring places
-              across India or hunting for indie music.
+              consume. I lean hard on AI-assisted delivery — Claude Code, custom skills,
+              and MCP-backed spec-to-test scaffolding cut our spec-to-merge time{' '}
+              <span className="text-white font-medium">40%</span>. I've solved 650+ DSA
+              problems and qualified for the Amazon ML Summer School 2024. Outside of
+              code, you'll find me exploring places across India or hunting for indie
+              music.
             </p>
 
             {/* Quick stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
               {[
-                { value: '1+', label: 'Years Exp.' },
-                { value: '20%', label: 'Throughput Boost' },
-                { value: '350+', label: 'DSA Problems' },
+                { value: '1.5+', label: 'Years Exp.' },
+                { value: '6', label: 'Services on my Platform' },
+                { value: '650+', label: 'DSA Problems' },
                 { value: '3+', label: 'Nxa Products Shipped so far' },
               ].map((stat, i) => (
                 <motion.div

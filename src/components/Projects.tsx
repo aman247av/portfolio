@@ -5,16 +5,16 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 const projects = [
   // ── Featured ───────────────────────────────────────────────
   {
-    title: 'NxaCare',
+    title: 'Nxacare',
     subtitle: 'Multi-Tenant SaaS Clinic Management Platform',
     org: 'Nxa',
     description:
-      'Full-stack healthcare SaaS digitizing end-to-end clinic operations — appointments, treatment plans, billing, prescriptions, and real-time chat. Features atomic slot-lock booking for zero double-bookings, dual payment gateways (Razorpay/Stripe) with circuit breakers, Socket.IO chat with SLA tracking, BullMQ workers for async tasks, and multi-tenant data isolation across 19+ models. Serves separate admin panel and patient app.',
-    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Redis', 'Socket.IO', 'Razorpay', 'GCP Cloud Run'],
-    github: 'https://github.com/alok2297/nxacare-backend',
-    live: 'https://nxacare-patient-uat.web.app/',
+      'Full-stack healthcare SaaS digitizing end-to-end clinic operations across 10+ modules — appointments, treatment plans, billing, prescriptions, and real-time chat. Built the availability engine reconciling doctor schedules, slot capacity, and concurrent requests to prevent double-booking; architected the payment layer integrating Stripe and Razorpay via a factory pattern with webhook signature verification and circuit-breaker gateway fallback; automated notification, invoicing, and appointment workflows with BullMQ, plus subscription billing with tiered plans, usage quotas, and feature gating.',
+    tech: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'Socket.IO', 'Stripe', 'Razorpay', 'Docker'],
+    github: 'https://github.com/aman247av/nxacare-backend',
+    live: 'https://nxacare.com',
     featured: true,
-    metrics: ['Zero double-bookings', 'Multi-tenant isolation', 'Real-time chat'],
+    metrics: ['Zero double-bookings', 'Dual payment gateways', 'Multi-tenant isolation'],
   },
   {
     title: 'Currency Exchange Microservices',
