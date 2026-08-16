@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Private working notes — candid, not for a public repo
+NOTES.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

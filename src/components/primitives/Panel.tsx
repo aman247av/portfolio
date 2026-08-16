@@ -20,8 +20,11 @@ export default function Panel({
     // Column flex so a child can claim the leftover height with flex-1.
     // (Using h-full on the child instead would measure the panel *including*
     // this header, overflowing the bottom border by the header's height.)
+    // `group` lives here rather than on each caller: the corner ticks highlight
+    // via `.group:hover`, and most call sites never added it — so the
+    // interaction silently did nothing on most panels on the page.
     <div
-      className={`panel ticks flex flex-col ${hover ? 'panel-hover' : ''} ${className}`}
+      className={`panel ticks group flex flex-col ${hover ? 'panel-hover' : ''} ${className}`}
     >
       {(title || meta) && (
         <div className="flex shrink-0 items-center justify-between gap-4 border-b border-edge px-4 py-2.5">

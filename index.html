@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <!-- iOS ignores SVG here, so a home-screen save produced a blank tile. -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0a0a0b" />
 
     <title>Aman Verma | Software Developer Engineer</title>
     <meta
       name="description"
-      content="Software engineer in Gurugram. Platform and backend systems at NAVIOM, previously LinkedIn data infrastructure. Open to opportunities and freelance work."
+      content="Backend and platform engineer in Gurugram. Platform layer at NAVIOM, previously Samza to Flink on LinkedIn's data infrastructure. Open to roles and freelance."
     />
     <link rel="canonical" href="https://amanverma.me/" />
     <meta name="author" content="Aman Verma" />
@@ -27,14 +28,15 @@
     <meta property="og:title" content="Aman Verma | Software Developer Engineer" />
     <meta
       property="og:description"
-      content="Platform and backend engineering at NAVIOM. Previously stream processing on LinkedIn's data infrastructure. Open to opportunities and freelance work."
+      content="Platform layer at NAVIOM. Previously Samza to Flink on LinkedIn's data infrastructure — 45% less memory, 20% more throughput. Open to roles and freelance work."
     />
     <meta property="og:image" content="https://amanverma.me/og.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Aman Verma, software engineer — I build backend systems that hold up when things break."
+      content="Aman Verma, backend and platform engineer: I build backend systems that hold up when things break. Currently NAVIOM; previously LinkedIn, where a migration cut memory 45% and raised throughput 20%; shipped NxaCare."
     />
     <meta property="profile:first_name" content="Aman" />
     <meta property="profile:last_name" content="Verma" />
@@ -43,117 +45,47 @@
     <meta name="twitter:title" content="Aman Verma | Software Developer Engineer" />
     <meta
       name="twitter:description"
-      content="Platform and backend engineering at NAVIOM. Previously stream processing on LinkedIn's data infrastructure. Open to opportunities and freelance work."
+      content="Platform layer at NAVIOM. Previously Samza to Flink on LinkedIn's data infrastructure — 45% less memory, 20% more throughput. Open to roles and freelance work."
     />
     <meta name="twitter:image" content="https://amanverma.me/og.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
-      rel="stylesheet"
+    <meta
+      name="twitter:image:alt"
+      content="Aman Verma, backend and platform engineer: I build backend systems that hold up when things break. Currently NAVIOM; previously LinkedIn, where a migration cut memory 45% and raised throughput 20%; shipped NxaCare."
     />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://amanverma.me/#person",
-            "name": "Aman Verma",
-            "givenName": "Aman",
-            "familyName": "Verma",
-            "jobTitle": "Software Engineer",
-            "description": "Software engineer with 1.5+ years building production backend systems end to end, from system design through deployment. Owns the platform layer of a greenfield cross-border logistics product at NAVIOM; previously worked on high-throughput distributed stream processing on LinkedIn's data infrastructure.",
-            "url": "https://amanverma.me/",
-            "image": "https://amanverma.me/og.png",
-            "email": "mailto:aman247av@gmail.com",
-            "telephone": "+91-7317270278",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Gurugram",
-              "addressRegion": "Haryana",
-              "addressCountry": "IN"
-            },
-            "worksFor": {
-              "@type": "Organization",
-              "name": "NAVIOM",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Gurugram",
-                "addressCountry": "IN"
-              }
-            },
-            "alumniOf": {
-              "@type": "CollegeOrUniversity",
-              "name": "Indian Institute of Information Technology, Guwahati",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Guwahati",
-                "addressRegion": "Assam",
-                "addressCountry": "IN"
-              }
-            },
-            "hasOccupation": {
-              "@type": "Occupation",
-              "name": "Software Engineer",
-              "occupationLocation": { "@type": "City", "name": "Gurugram" },
-              "skills": "Backend engineering, platform engineering, distributed systems, stream processing, API design"
-            },
-            "knowsAbout": [
-              "Backend engineering",
-              "Platform engineering",
-              "Distributed systems",
-              "Stream processing",
-              "Apache Kafka",
-              "Apache Flink",
-              "TypeScript",
-              "NestJS",
-              "Node.js",
-              "Java",
-              "PostgreSQL",
-              "Redis",
-              "RabbitMQ",
-              "System design",
-              "REST APIs",
-              "gRPC",
-              "Microservices",
-              "Docker",
-              "Kubernetes",
-              "Google Cloud Platform",
-              "Amazon Web Services",
-              "Payment gateway integration",
-              "AI-assisted software development"
-            ],
-            "sameAs": [
-              "https://github.com/aman247av",
-              "https://www.linkedin.com/in/aman247av/",
-              "https://leetcode.com/u/aman24av/",
-              "https://www.geeksforgeeks.org/profile/aman247av"
-            ]
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://amanverma.me/#website",
-            "url": "https://amanverma.me/",
-            "name": "Aman Verma",
-            "description": "Portfolio of Aman Verma, backend and platform software engineer.",
-            "inLanguage": "en",
-            "publisher": { "@id": "https://amanverma.me/#person" }
-          },
-          {
-            "@type": "ProfilePage",
-            "@id": "https://amanverma.me/#profilepage",
-            "url": "https://amanverma.me/",
-            "name": "Aman Verma | Software Developer Engineer",
-            "isPartOf": { "@id": "https://amanverma.me/#website" },
-            "about": { "@id": "https://amanverma.me/#person" },
-            "inLanguage": "en"
-          }
-        ]
-      }
-    </script>
+    <!-- Identity verification for the profiles claimed in the Person schema. -->
+    <link rel="me" href="https://github.com/aman247av" />
+    <link rel="me" href="https://www.linkedin.com/in/aman247av/" />
+
+    <!-- Self-hosted variable fonts, preloaded so they land before first paint.
+         Both are needed above the fold: the h1 is JetBrains Mono (it is the LCP
+         element) and the hero prose is Inter. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/jetbrains-mono-latin-var.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin-var.woff2"
+      crossorigin
+    />
+
+    <!-- Generated from src/content by scripts/prerender.mjs at build time, so
+         the markup cannot disagree with the page. Empty in dev; crawlers only
+         ever see the production build. -->
+    <!--structured-data-->
+
+    <!-- Cloudflare Web Analytics, injected by scripts/prerender.mjs so it only
+         ships in production builds. Cloudflare rejects any origin other than
+         the registered one, so on localhost the beacon throws a CORS error and
+         buries real errors in the dev console. No cookies, so no consent banner
+         is needed. This is the page's only third-party request. -->
+    <!--analytics-->
   </head>
   <body>
     <div id="root"></div>

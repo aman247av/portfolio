@@ -28,6 +28,9 @@ const strokes = {
   arrow: <path d="M7 17 17 7M8.5 7H17v8.5" />,
   menu: <path d="M3 7h18M3 15h18" />,
   close: <path d="m5 5 14 14M19 5 5 19" />,
+  download: <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16" />,
+  check: <path d="m4 12.5 5 5L20 6.5" />,
+  send: <path d="M21 3 10.5 13.5M21 3l-6.5 18-4-8-8-4L21 3Z" />,
 } as const;
 
 export default function Icon({ name, className = 'h-4 w-4' }: IconProps) {

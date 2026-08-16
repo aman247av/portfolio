@@ -4,8 +4,11 @@ import Reveal from './Reveal';
 type SectionProps = {
   id: string;
   index: string;
+  /** Eyebrow above the heading — the index-rail label. */
   label: string;
-  /** Right-aligned counter or status, e.g. "6 ROLES". */
+  /** The real heading. Renders as the h2, at heading size. */
+  title: string;
+  /** Right-aligned counter or status, e.g. "4 roles". */
   meta?: string;
   intro?: string;
   children: ReactNode;
@@ -14,8 +17,21 @@ type SectionProps = {
 /**
  * Every section opens with the same index rule, which is what gives the page
  * its instrument-panel rhythm.
+ *
+ * The h2 used to be the rail label itself — 11px uppercase grey, which made
+ * the chapter markers the smallest text on the page and left a scanner with
+ * no landmarks. The rail is now decoration and the h2 carries a real
+ * sentence at real size.
  */
-export default function Section({ id, index, label, meta, intro, children }: SectionProps) {
+export default function Section({
+  id,
+  index,
+  label,
+  title,
+  meta,
+  intro,
+  children,
+}: SectionProps) {
   const headingId = `${id}-heading`;
 
   return (
@@ -24,21 +40,23 @@ export default function Section({ id, index, label, meta, intro, children }: Sec
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="t-label text-amber">[{index}]</span>
-            <h2 id={headingId} className="t-label text-hi">
-              {label}
-            </h2>
+            <span className="t-label text-mid">{label}</span>
             <span aria-hidden="true" className="h-px flex-1 bg-edge" />
             {meta && <span className="t-label hidden sm:block">{meta}</span>}
           </div>
+
+          <h2 id={headingId} className="t-section mt-5 max-w-3xl">
+            {title}
+          </h2>
         </Reveal>
 
         {intro && (
           <Reveal delay={60}>
-            <p className="t-body mt-6 max-w-2xl">{intro}</p>
+            <p className="t-body mt-5 max-w-2xl">{intro}</p>
           </Reveal>
         )}
 
-        <div className="mt-10 md:mt-12">{children}</div>
+        <div className="mt-10 md:mt-14">{children}</div>
       </div>
     </section>
   );

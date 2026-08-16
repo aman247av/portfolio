@@ -9,15 +9,21 @@ export type Workstream = {
 
 export type Role = {
   company: string;
+  /** Named separately so the client brand is not buried in a caption. */
+  client?: string;
   note?: string;
   title: string;
   period: string;
   location: string;
+  /** What sector the work was in — recruiters filter on this. */
+  industry: string;
   current?: boolean;
   /** One line on what the job actually was. */
   premise: string;
   workstreams: Workstream[];
   stack: string[];
+  /** Points at the deep version of this work in the case studies. */
+  caseStudy?: { label: string; href: string };
 };
 
 export const roles: Role[] = [
@@ -26,6 +32,7 @@ export const roles: Role[] = [
     title: 'Software Engineer I',
     period: 'Jul 2026 — Present',
     location: 'Gurugram',
+    industry: 'Cross-border logistics',
     current: true,
     premise:
       'Designing and building the core platform systems for a greenfield cross-border logistics product — built from an empty repository. I own the layer everything else is assembled from.',
@@ -66,49 +73,43 @@ export const roles: Role[] = [
       {
         title: 'AI-assisted delivery',
         summary:
-          'Rolled out an AI-assisted delivery workflow built on Claude Code, with human review and CI gates kept firmly in place.',
+          'Introduced an AI-assisted delivery workflow built on Claude Code, with human review and CI gates kept firmly in place.',
         detail: [
           'Repo-level context, custom skills, and MCP-backed spec-to-test scaffolding and PR review. Nothing merges without a person and the pipeline agreeing.',
         ],
-        figures: [{ value: '−40%', label: 'spec-to-merge time' }],
       },
     ],
     stack: ['TypeScript', 'NestJS', 'Next.js', 'PostgreSQL', 'Redis', 'RabbitMQ', 'GCP', 'Docker'],
   },
   {
     company: 'MAQ Software',
-    note: 'Client: LinkedIn',
-    title: 'Software Engineer I · intern → FTE',
+    client: 'LinkedIn',
+    note: 'intern → full time',
+    title: 'Software Engineer I',
     period: 'Jan 2025 — Jun 2026',
     location: 'Noida',
+    industry: 'Data infrastructure',
     premise:
-      'Worked on LinkedIn’s data infrastructure — high-throughput distributed stream processing, and the tooling to move it safely. Started as an intern and converted to full time.',
+      'Eighteen months on LinkedIn’s data infrastructure — high-throughput distributed stream processing, and the tooling to move it safely. Started as an intern and converted to full time.',
     workstreams: [
       {
         title: 'Samza → Flink migration',
         summary:
-          'Migrated a high-volume financial stream-processing pipeline from Samza to Apache Flink.',
-        detail: [
-          'The memory win came from object reuse and cutting intermediate allocations; the throughput win from parallel execution and operator chaining. Financial pipelines are the kind you do not get to replay casually, so correctness came before either number.',
-        ],
+          'Migrated a high-volume financial stream-processing pipeline from Samza to Apache Flink, and built the tooling that scaled the migration across repositories.',
+        // The "how" used to be explained here as well as in the case study —
+        // the same reasoning told twice, a screen apart. It now lives only in
+        // the case study, which covers it across three decision cards. This
+        // section states the outcome; the case study explains it.
+        detail: [],
         figures: [
           { value: '−45%', label: 'Kafka I/O memory' },
           { value: '+20%', label: 'throughput' },
+          { value: '−70%', label: 'manual effort' },
         ],
-      },
-      {
-        title: 'Migration tooling',
-        summary:
-          'Built the tooling that scaled the migration across repositories rather than doing it by hand.',
-        detail: [
-          'Automated code transformation, metric-gated progressive rollout, and checkpoint-aware rollback — so a bad deploy could be walked back to a known-good checkpoint instead of being fixed forward under pressure.',
-        ],
-        figures: [{ value: '−70%', label: 'manual effort' }],
       },
       {
         title: 'MegaRefresh — model lineage',
-        summary:
-          'DAG-based model-lineage discovery and metadata collection.',
+        summary: 'DAG-based model-lineage discovery and metadata collection.',
         detail: [
           'Made reproducibility, tiering, and policy-gated publishing possible across the model estate — you can answer where a model’s inputs came from before you publish it.',
         ],
@@ -116,6 +117,7 @@ export const roles: Role[] = [
       },
     ],
     stack: ['Java', 'Apache Flink', 'Apache Kafka', 'Python', 'Kubernetes', 'PostgreSQL', 'Linux'],
+    caseStudy: { label: 'Read the migration case study', href: '#case-flink-migration' },
   },
   {
     company: 'Avant Enterprises',
@@ -123,8 +125,9 @@ export const roles: Role[] = [
     title: 'Developer',
     period: 'Aug 2024 — Sep 2024',
     location: 'Remote',
+    industry: 'Project management software',
     premise:
-      'A short freelance engagement shipping project-management modules and customer-facing dashboards.',
+      'A short freelance engagement shipping project-management modules and customer-facing dashboards, working directly with the stakeholders who used them.',
     workstreams: [
       {
         title: 'Modules & dashboards',
@@ -142,6 +145,7 @@ export const roles: Role[] = [
     title: 'Software Engineering Intern',
     period: 'Oct 2023 — Jun 2024',
     location: 'Remote',
+    industry: 'Edtech',
     premise:
       'Backend services for a scholarship campaign platform, plus the AWS infrastructure under them.',
     workstreams: [

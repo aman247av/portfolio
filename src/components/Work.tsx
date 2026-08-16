@@ -1,17 +1,21 @@
-import { archive, featured, secondary } from '../content/work';
+import type { CaseStudy } from '../content/work';
+import { caseStudies, secondary, smaller } from '../content/work';
 import BookingDiagram from './diagrams/BookingDiagram';
+import MigrationChart from './diagrams/MigrationChart';
 import Icon from './primitives/Icon';
-import Panel, { Readout } from './primitives/Panel';
+import Panel from './primitives/Panel';
 import Reveal from './primitives/Reveal';
 import Section from './primitives/Section';
 
-function Chips({ items }: { items: string[] }) {
+function Chips({ items, bright = false }: { items: string[]; bright?: boolean }) {
   return (
     <ul className="flex flex-wrap gap-1.5">
       {items.map((item) => (
         <li
           key={item}
-          className="border border-edge px-2 py-1 font-mono text-[0.6875rem] text-mid"
+          className={`border border-edge px-2 py-1 font-mono text-[0.6875rem] ${
+            bright ? 'text-hi' : 'text-mid'
+          }`}
         >
           {item}
         </li>
@@ -29,6 +33,7 @@ function OutLink({ href, label }: { href: string; label: string }) {
       className="group inline-flex items-center gap-1.5 py-1.5 font-mono text-[0.8125rem] text-hi"
     >
       <span className="link-underline pb-0.5">{label}</span>
+      <span className="sr-only">(opens in a new tab)</span>
       <Icon
         name="arrow"
         className="h-3 w-3 text-lo transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-amber"
@@ -37,76 +42,195 @@ function OutLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function Featured() {
+/** The figure that belongs to each study, keyed by slug. */
+const figures: Record<string, React.ReactNode> = {
+  'flink-migration': <MigrationChart />,
+  nxacare: <BookingDiagram />,
+};
+
+function Study({ study, index }: { study: CaseStudy; index: number }) {
+  const live = study.status.tone === 'live';
+
   return (
-    <article>
+    <article id={`case-${study.slug}`} className="scroll-mt-28">
+      {/* Title, status, and provenance stack on the left instead of throwing
+          the metadata to the far right edge, where it sat ~900px from the
+          title it described and shouted in uppercase amber. */}
       <Reveal>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-edge pb-4">
-          <div className="flex items-baseline gap-3">
-            <span className="t-label text-lo">01</span>
-            <h3 className="t-h2">{featured.title}</h3>
-            <span className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-green">
-              <span aria-hidden="true" className="h-1.5 w-1.5 bg-green" />
-              LIVE
+        <div className="border-b border-edge pb-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="font-mono text-[0.8125rem] font-medium text-amber">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className="t-h2">{study.title}</h3>
+            <span
+              className={`inline-flex items-center gap-1.5 border px-2 py-1 font-mono text-[0.6875rem] tracking-[0.08em] ${
+                live
+                  ? 'border-green/40 bg-green/[0.07] text-green'
+                  : 'border-edge-hi text-lo'
+              }`}
+            >
+              <span
+                aria-hidden="true"
+                className={`h-1.5 w-1.5 ${live ? 'bg-green' : 'bg-edge-hi'}`}
+              />
+              {study.status.label}
             </span>
           </div>
-          <p className="t-label">{featured.kind}</p>
+          <p className="mt-2.5 font-mono text-[0.8125rem] text-lo">
+            {study.kind}
+            <span aria-hidden="true" className="mx-2 text-edge-hi">
+              /
+            </span>
+            {study.contextHref ? (
+              <a
+                href={study.contextHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline pb-0.5 text-amber"
+              >
+                {study.context}
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            ) : (
+              <span className="text-amber">{study.context}</span>
+            )}
+          </p>
         </div>
       </Reveal>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="t-body text-hi">{featured.lede}</p>
-            <p className="t-body mt-4">{featured.premise}</p>
+            <p className="t-lede">{study.lede}</p>
           </Reveal>
 
           <Reveal delay={60}>
             <div className="mt-6">
-              <Panel title="Build sheet">
-                <div className="row-divide">
-                  <Readout k="my role" v={featured.role} block />
-                  <Readout k="modules" v="10+" accent />
-                  <Readout k="surfaces" v="admin panel · patient app" />
-                  <Readout k="tenancy" v="isolated, 19+ models" />
-                  <Readout k="gateways" v="stripe · razorpay" />
-                  <Readout k="queues" v="bullmq" />
-                </div>
+              <Panel title="The problem">
+                <p className="t-body-sm px-4 py-3.5">{study.problem}</p>
+              </Panel>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className="mt-5">
+              <Panel title="My role">
+                <p className="t-body-sm px-4 py-3.5 text-hi">{study.role}</p>
               </Panel>
             </div>
           </Reveal>
 
           <Reveal delay={100}>
             <div className="mt-5">
-              <Chips items={featured.stack} />
+              <Chips items={study.stack} />
             </div>
-            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-              {featured.links.map((link) => (
-                <OutLink key={link.href} {...link} />
-              ))}
-            </div>
+
+            {/* A live product is the strongest proof a client will see, so the
+                first link is a button rather than a 13px text link. */}
+            {study.links.length > 0 && (
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                {study.links.map((link, i) =>
+                  i === 0 ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-ghost group"
+                    >
+                      {link.label}
+                      <Icon
+                        name="arrow"
+                        className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <OutLink key={link.href} {...link} />
+                  ),
+                )}
+              </div>
+            )}
+
+            {study.linkNote && (
+              <p className="t-body-sm mt-5 flex items-start gap-2 border-l border-edge-hi pl-3 text-lo">
+                {study.linkNote}
+              </p>
+            )}
           </Reveal>
         </div>
 
-        <Reveal delay={80} className="lg:col-span-7">
-          <BookingDiagram />
+        {/* Same imbalance as the hero: the figure runs shorter than the column
+            of prose beside it, so it sits centred rather than leaving the whole
+            gap hanging off the bottom. */}
+        <Reveal delay={80} className="lg:col-span-7 lg:self-center">
+          {figures[study.slug]}
         </Reveal>
       </div>
 
-      {/* Technical highlights, as a dense instrument grid. */}
-      <div className="mt-8 grid gap-px border border-edge bg-edge md:grid-cols-2">
-        {featured.highlights.map((item, i) => (
-          <Reveal key={item.title} delay={i * 50} className="group bg-void">
+      {/* Outcome first, then the decisions that produced it. */}
+      <Reveal>
+        <div className="mt-10 border border-edge">
+          <div className="flex items-center justify-between gap-4 border-b border-edge px-4 py-2.5">
+            <span className="t-label text-mid">Outcome</span>
+          </div>
+          <dl className="grid gap-px bg-edge sm:grid-cols-3">
+            {study.outcomes.map((item) => (
+              <div key={item.label} className="bg-void px-4 py-5">
+                <dt className="sr-only">{item.label}</dt>
+                <dd className="t-readout">{item.value}</dd>
+                <dd className="t-label mt-2">{item.label}</dd>
+              </div>
+            ))}
+          </dl>
+          {study.outcomeNote && (
+            <p className="t-body-sm border-t border-edge px-4 py-3 text-lo">
+              {study.outcomeNote}
+            </p>
+          )}
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div className="mt-10 flex items-center gap-4">
+          <h4 className="t-label text-mid">Decisions I made</h4>
+          <span aria-hidden="true" className="h-px flex-1 bg-edge" />
+        </div>
+      </Reveal>
+
+      <div className="mt-5 grid gap-px border border-edge bg-edge md:grid-cols-2">
+        {study.decisions.map((item, i) => {
+          // An odd count leaves a dead cell in a two-column grid, so the last
+          // card takes the full row rather than sitting next to a hole.
+          const orphan = study.decisions.length % 2 === 1 && i === study.decisions.length - 1;
+          return (
+          <Reveal
+            key={item.title}
+            delay={i * 40}
+            className={`group bg-void ${orphan ? 'md:col-span-2' : ''}`}
+          >
             <div className="h-full p-5">
               <div className="flex items-baseline gap-3">
                 <span className="t-label text-amber">{String(i + 1).padStart(2, '0')}</span>
-                <h4 className="t-h3">{item.title}</h4>
+                <h5 className="t-h3">{item.title}</h5>
               </div>
-              <p className="t-body mt-2.5 text-[0.875rem]">{item.body}</p>
+              <p className="t-body-sm mt-2.5">{item.body}</p>
             </div>
           </Reveal>
-        ))}
+          );
+        })}
       </div>
+
+      <Reveal>
+        <div className="mt-6">
+          <Panel title="What this demonstrates">
+            <div className="p-4">
+              <Chips items={study.demonstrates} bright />
+            </div>
+          </Panel>
+        </div>
+      </Reveal>
     </article>
   );
 }
@@ -119,16 +243,29 @@ function Secondary() {
           <Panel
             hover
             title={project.kind}
-            meta={String(i + 2).padStart(2, '0')}
+            meta={String(caseStudies.length + i + 1).padStart(2, '0')}
             className="h-full"
           >
             <div className="flex flex-1 flex-col p-5">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h3 className="t-h3">{project.title}</h3>
-                {project.context && <span className="t-label text-amber">{project.context}</span>}
+                {project.context &&
+                  (project.contextHref ? (
+                    <a
+                      href={project.contextHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="t-label link-underline pb-0.5 text-amber"
+                    >
+                      {project.context}
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <span className="t-label text-amber">{project.context}</span>
+                  ))}
               </div>
-              <p className="t-body mt-2.5 text-[0.875rem]">{project.lede}</p>
-              <p className="t-body mt-2 text-[0.875rem] text-lo">{project.role}</p>
+              <p className="t-body-sm mt-2.5">{project.lede}</p>
+              <p className="t-body-sm mt-2 text-lo">{project.role}</p>
 
               {project.facts && (
                 <dl className="mt-4 grid grid-cols-2 gap-px border border-edge bg-edge">
@@ -152,52 +289,40 @@ function Secondary() {
           </Panel>
         </Reveal>
       ))}
-    </div>
-  );
-}
 
-function Archive() {
-  return (
-    <div className="mt-16">
-      <Reveal>
-        <div className="flex items-center gap-4">
-          <h3 className="t-label">archive / university</h3>
-          <span aria-hidden="true" className="h-px flex-1 bg-edge" />
-        </div>
+      {/* Smaller builds share the row so they read as a footnote, not a tier. */}
+      <Reveal delay={140}>
+        <Panel title="Also built" className="h-full">
+          <ul className="row-divide flex-1">
+            {smaller.map((project) => (
+              <li key={project.title}>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-4 transition-colors hover:bg-panel-2"
+                >
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-mono text-[0.875rem] text-hi transition-colors group-hover:text-amber">
+                      {project.title}
+                    </h3>
+                    <Icon
+                      name="arrow"
+                      className="h-3.5 w-3.5 shrink-0 text-lo transition-colors group-hover:text-amber"
+                    />
+                  </div>
+                  <p className="t-label mt-1">{project.context}</p>
+                  <p className="t-body-sm mt-2">{project.note}</p>
+                  <div className="mt-3">
+                    <Chips items={project.stack} />
+                  </div>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Panel>
       </Reveal>
-
-      <ul className="mt-5 border border-edge">
-        {archive.map((project, i) => (
-          <Reveal
-            as="li"
-            key={project.title}
-            delay={i * 50}
-            className={i > 0 ? 'border-t border-edge' : ''}
-          >
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group grid gap-2 p-4 transition-colors hover:bg-panel-2 md:grid-cols-12 md:items-center md:gap-6"
-            >
-              <div className="md:col-span-3">
-                <h4 className="font-mono text-[0.875rem] text-hi transition-colors group-hover:text-amber">
-                  {project.title}
-                </h4>
-                <p className="t-label mt-1">{project.context}</p>
-              </div>
-              <p className="t-body text-[0.8125rem] md:col-span-6">{project.note}</p>
-              <div className="flex items-center justify-between gap-3 md:col-span-3">
-                <Chips items={project.stack} />
-                <Icon
-                  name="arrow"
-                  className="hidden h-3.5 w-3.5 shrink-0 text-edge-hi transition-colors group-hover:text-amber md:block"
-                />
-              </div>
-            </a>
-          </Reveal>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -208,12 +333,17 @@ export default function Work() {
       id="work"
       index="02"
       label="Selected work"
-      meta="6 projects"
-      intro="Products built outside the day job — shipped, in use, and maintained. The first gets the most room because it earned it."
+      title="Two systems, taken apart: what broke, what I decided, what changed."
+      meta={`${caseStudies.length} case studies`}
+      intro="The first is a product I own end to end and the clearest proof I can ship a whole thing. The second is the hardest single problem I have worked on. Both are written the way I would talk through them in an interview."
     >
-      <Featured />
+      <div className="space-y-20 md:space-y-24">
+        {caseStudies.map((study, i) => (
+          <Study key={study.slug} study={study} index={i} />
+        ))}
+      </div>
+
       <Secondary />
-      <Archive />
     </Section>
   );
 }

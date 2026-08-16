@@ -1,10 +1,22 @@
 import Panel from '../primitives/Panel';
 
-function Arrow() {
+/**
+ * Points down while the row is stacked and right once it is side by side.
+ *
+ * `at` is the breakpoint the parent row goes horizontal at. The five-track
+ * booking row needs `xl`: between 1024 and 1280 it sits inside a 7-of-12
+ * column, which is far too narrow for five tracks — it went horizontal at
+ * `md` before and was badly squeezed for that whole range.
+ */
+function Arrow({ at = 'md' }: { at?: 'md' | 'xl' }) {
+  const stacked = at === 'xl' ? 'xl:hidden' : 'md:hidden';
+  const inline = at === 'xl' ? 'hidden xl:block' : 'hidden md:block';
+  const pad = at === 'xl' ? 'py-1 xl:py-0' : 'py-1 md:py-0';
+
   return (
-    <div className="flex items-center justify-center py-1 md:py-0" aria-hidden="true">
-      <span className="text-edge-hi md:hidden">↓</span>
-      <span className="hidden text-edge-hi md:block">→</span>
+    <div className={`flex items-center justify-center ${pad}`} aria-hidden="true">
+      <span className={`text-edge-hi ${stacked}`}>↓</span>
+      <span className={`text-edge-hi ${inline}`}>→</span>
     </div>
   );
 }
@@ -12,23 +24,23 @@ function Arrow() {
 export default function BookingDiagram() {
   return (
     <figure className="m-0">
-      <Panel title="Nxacare / booking + payment path" meta="request flow">
+      <Panel title="NxaCare / booking + payment path" meta="request flow">
         <div className="p-4 sm:p-5">
           {/* Happy path, left to right on desktop and top to bottom on mobile. */}
-          <div className="grid items-stretch gap-1 md:grid-cols-[1fr_auto_1.5fr_auto_1.1fr]">
+          <div className="grid items-stretch gap-1 xl:grid-cols-[1fr_auto_1.5fr_auto_1.1fr]">
             <div className="node node-dim flex items-center justify-center text-center">
               concurrent
               <br />
               booking requests
             </div>
-            <Arrow />
+            <Arrow at="xl" />
             <div className="node node-accent">
               <div>availability engine</div>
               <div className="t-label mt-1.5 normal-case tracking-normal">
                 schedules · capacity · slot lock
               </div>
             </div>
-            <Arrow />
+            <Arrow at="xl" />
             <div className="node flex flex-col items-center justify-center text-center">
               <span>one booking</span>
               <span className="mt-0.5 whitespace-nowrap text-green">no double-booking</span>
