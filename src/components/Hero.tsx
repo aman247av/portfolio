@@ -1,14 +1,17 @@
-import { links, site } from '../content/site';
+import { links, proof, site } from '../content/site';
 import PlatformDiagram from './diagrams/PlatformDiagram';
 import Icon from './primitives/Icon';
 import Reveal from './primitives/Reveal';
 
-const strip = [
-  { k: 'experience', v: '1.5+ years, backend & platform' },
-  { k: 'current', v: 'NAVIOM — platform layer', accent: true },
-  { k: 'previously', v: 'LinkedIn data infra, via MAQ' },
-  { k: 'freelance', v: 'open — web apps, backends, MVPs' },
-];
+/**
+ * Three different dimensions, not three synonyms: design ownership, scale, and
+ * product shape. Each is backed by a case study or a role further down the
+ * page — nothing here is aspirational.
+ *
+ * "Backend architecture" rather than "backend systems", because the headline
+ * directly above already says that and a chip repeating it earns nothing.
+ */
+const specialisms = ['Backend architecture', 'Distributed systems', 'Multi-tenant SaaS'];
 
 export default function Hero() {
   return (
@@ -27,7 +30,7 @@ export default function Hero() {
                 search for "Aman Verma" find it in the h1. */}
             <Reveal delay={70}>
               <h1 className="mt-6">
-                <span className="block font-mono text-[1.05rem] font-medium uppercase tracking-[0.2em] text-hi">
+                <span className="block font-mono text-[1.0625rem] font-medium uppercase tracking-[0.2em] text-hi">
                   {site.name}
                 </span>{' '}
                 {/* Wraps naturally at every width — no forced breaks to overflow. */}
@@ -38,9 +41,12 @@ export default function Hero() {
               </h1>
             </Reveal>
 
+            {/* Current position, stated plainly. The employer carries the
+                weight, so it is the only thing lifted to full contrast. */}
             <Reveal delay={110}>
-              <p className="mt-6 font-mono text-[0.875rem] text-mid">
-                {site.role} at <span className="text-hi">{site.company}</span>
+              <p className="mt-6 font-mono text-[0.9375rem] text-mid">
+                {site.title} at{' '}
+                <span className="font-medium text-hi">{site.company}</span>
                 <span aria-hidden="true" className="mx-2 text-edge-hi">
                   ·
                 </span>
@@ -49,47 +55,70 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={130}>
+              <ul className="mt-4 flex flex-wrap gap-1.5">
+                {specialisms.map((item) => (
+                  <li
+                    key={item}
+                    className="border border-edge px-2.5 py-1 font-mono text-[0.6875rem] text-mid"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={150}>
               <p className="t-body mt-7 max-w-xl">
-                Software engineer with 1.5+ years building production backend systems end
-                to end — system design through deployment. Right now I own the platform
-                layer of a greenfield cross-border logistics product at NAVIOM: the
-                workflow engine, the rules engine, and the partner integrations every
-                other service is built on. Before that, high-throughput stream processing
-                inside LinkedIn’s data infrastructure.
+                I own the platform layer of a greenfield cross-border logistics product at{' '}
+                <span className="text-hi">NAVIOM</span> — the workflow engine, the rules
+                engine, and the partner integrations every other service is built on.
+                Before that, eighteen months on{' '}
+                <span className="text-hi">LinkedIn’s data infrastructure</span>, moving a
+                high-volume financial pipeline from Samza to Flink.
               </p>
             </Reveal>
 
-            <Reveal delay={170}>
+            <Reveal delay={180}>
               <p className="t-body mt-4 max-w-xl">
-                I also build whole products end to end, and take on freelance work — web
-                apps, backends, and MVPs that need to actually ship.
+                I also build whole products end to end and take on select freelance work —
+                backends, web apps, and MVPs that need to actually ship.
               </p>
             </Reveal>
 
+            {/* Three ranked next actions: the work, the conversation, the CV. */}
+            {/* Three actions on one row, socials on their own. Left to wrap
+                freely these produced a ragged two-row block on mobile with the
+                icons stranded beside a half-width button. */}
             <Reveal delay={220}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <a
-                  href="#work"
-                  className="group inline-flex items-center gap-2 bg-amber px-4 py-2.5 font-mono text-[0.8125rem] font-medium text-void transition-colors hover:bg-hi"
-                >
+              <div className="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
+                <a href="#work" className="btn btn-primary group">
                   see the work
                   <Icon
                     name="arrow"
                     className="h-3.5 w-3.5 rotate-45 transition-transform duration-200 group-hover:translate-x-0.5"
                   />
                 </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 border border-edge-hi px-4 py-2.5 font-mono text-[0.8125rem] text-hi transition-colors hover:border-amber hover:text-amber"
-                >
-                  start a project
-                </a>
-                <div className="ml-1 flex items-center gap-1">
+                <div className="grid grid-cols-2 gap-3 sm:contents">
+                  <a href="#contact" className="btn btn-ghost">
+                    hire me
+                  </a>
+                  <a
+                    href={site.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-quiet"
+                  >
+                    resume
+                    <Icon name="download" className="h-3.5 w-3.5" />
+                    <span className="sr-only">(PDF, opens in a new tab)</span>
+                  </a>
+                </div>
+                <div className="flex items-center gap-1 sm:ml-1">
                   <a
                     href={links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub"
+                    aria-label="GitHub (opens in a new tab)"
                     className="p-2.5 text-lo transition-colors hover:text-hi"
                   >
                     <Icon name="github" className="h-[17px] w-[17px]" />
@@ -98,7 +127,7 @@ export default function Hero() {
                     href={links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="LinkedIn"
+                    aria-label="LinkedIn (opens in a new tab)"
                     className="p-2.5 text-lo transition-colors hover:text-hi"
                   >
                     <Icon name="linkedin" className="h-[17px] w-[17px]" />
@@ -108,26 +137,37 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={260} className="lg:col-span-5">
+          {/* Centred at lg: the diagram is ~200px shorter than the text column,
+              and hanging that whole gap off the bottom read as unbalanced.
+              On mobile it drops below the credibility strip — names and
+              employers are a far faster read than a schematic, and the diagram
+              was pushing them ~500px further down the page. */}
+          <Reveal
+            delay={260}
+            className="order-3 lg:order-none lg:col-span-5 lg:self-center"
+          >
             <PlatformDiagram />
           </Reveal>
-        </div>
 
-        {/* Readout strip — the four facts, stated as instrument values. */}
-        <Reveal delay={320}>
-          <dl className="mt-14 grid gap-px border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-4">
-            {strip.map((cell) => (
+          {/* Credibility strip. Names, not tenure — the names do more work. */}
+          <Reveal delay={320} className="order-2 lg:order-none lg:col-span-12 lg:mt-2">
+            <dl className="grid grid-cols-2 gap-px border border-edge bg-edge lg:grid-cols-4">
+            {proof.map((cell) => (
               <div key={cell.k} className="bg-void p-4">
                 <dt className="t-label">{cell.k}</dt>
                 <dd
-                  className={`t-mono mt-2 ${cell.accent ? 'text-amber' : 'text-hi'}`}
+                  className={`mt-2 font-mono text-[0.9375rem] ${
+                    'accent' in cell && cell.accent ? 'text-amber' : 'text-hi'
+                  }`}
                 >
                   {cell.v}
                 </dd>
+                <dd className="t-body-sm mt-1 text-lo">{cell.note}</dd>
               </div>
             ))}
-          </dl>
-        </Reveal>
+            </dl>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

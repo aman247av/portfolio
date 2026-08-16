@@ -3,6 +3,9 @@
 User-agent: *
 Allow: /
 
+# Search Console ownership proof — one line of text, no reason to be indexed.
+Disallow: /google7061fb083d94fd68.html
+
 # AI crawlers are allowed explicitly. Several of these check for their own
 # named rule and treat its absence conservatively, so being listed matters
 # if you want to be quotable in AI answers.

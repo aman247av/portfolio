@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# amanverma.me
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal site for Aman Verma — backend and platform engineer. Single page,
+prerendered to static HTML at build time so crawlers that do not execute
+JavaScript still see every word.
 
-Currently, two official plugins are available:
+**Live:** https://amanverma.me
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- **Vite 8** + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (`@theme` tokens in `src/index.css`, no config file)
+- No UI library, no icon package, no animation library
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Requirements
 
-## Expanding the ESLint configuration
+Node **>= 20.19** (or >= 22.12). Vite 8 will not start on anything older.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+nvm use          # reads .nvmrc
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Dev server with HMR |
+| `npm run build` | Typecheck, build client, build SSR bundle, inject prerendered HTML |
+| `npm run preview` | Serve the built `dist/` |
+| `npm run lint` | ESLint |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How the prerender works
+
+`npm run build` runs three steps after `tsc`:
+
+1. `vite build` — the client bundle.
+2. `vite build --ssr src/entry-server.tsx` — a server bundle exposing `render()`.
+3. `node scripts/prerender.mjs` — calls `render()`, injects the markup into
+   `dist/index.html`, then deletes the server bundle.
+
+`src/main.tsx` hydrates when it finds prerendered markup and mounts normally
+when it does not, so dev and production both work without a flag.
+
+## Layout
+
 ```
+src/
+  content/          All copy lives here, typed. Edit this, not the components.
+    site.ts         Name, links, nav, hero proof strip
+    work.ts         Case studies and projects
+    experience.ts   Roles
+    about.ts        Bio, strengths, stack, services, engagement terms
+  components/
+    primitives/     Section, Panel, Reveal, Icon
+    diagrams/       Hand-built CSS diagrams (no images)
+  index.css         The entire design system
+```
+
+Content and presentation are deliberately separate: almost every change worth
+making is an edit to `src/content/*.ts`.
+
+## Contact form
+
+`src/components/Contact.tsx` holds a `WEB3FORMS_KEY` constant. With a key set,
+submissions POST to Web3Forms and land in the inbox the key was issued for. Left
+empty, the form falls back to composing a structured mail in the visitor's own
+client. The key is public by design and safe to commit.
+
+## Deployment
+
+Static. Build and serve `dist/`. `public/` carries `robots.txt`, `sitemap.xml`,
+`llms.txt`, the OG image, and the résumé PDF.
